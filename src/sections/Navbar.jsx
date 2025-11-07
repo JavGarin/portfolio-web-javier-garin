@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 import { socials, email } from "../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -113,7 +113,7 @@ const Navbar = () => {
                   to={`${section}`}
                   smooth
                   offset={0}
-                  duration={2000}
+                  duration={500}
                 >
                   {section}
                 </Link>
@@ -172,4 +172,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

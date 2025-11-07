@@ -1,7 +1,7 @@
+import { memo, useRef, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { projects } from "../constants";
-import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -181,4 +181,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default memo(Works);

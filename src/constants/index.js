@@ -86,7 +86,7 @@ export const projects = [
       "ElderWizz AI is an interactive web application designed to help developers improve the quality of their code.",
     href: "https://github.com/JavGarin/elder-wizz-ai",
     image: "/assets/projects/elderwizz.avif",
-    bgImage: "/assets/backgrounds/Network.jpg",
+    bgImage: "/assets/backgrounds/Network.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Gemini API" },
@@ -101,8 +101,8 @@ export const projects = [
     description:
       "An online store specializing in creative and handmade items with a clean and easy-to-use interface.",
     href: "https://github.com/JavGarin/web-shoping-astro",
-    image: "/assets/projects/country-house-chile.png",
-    bgImage: "/assets/backgrounds/curtains.jpg",
+    image: "/assets/projects/country-house-chile.avif",
+    bgImage: "/assets/backgrounds/curtains.avif",
     frameworks: [
       { id: 1, name: "Astro" },
       { id: 2, name: "TypeScript" },
@@ -116,8 +116,8 @@ export const projects = [
     description:
       "An e-commerce platform for Anime products and accessories with offers and category filtering.",
     href: "",
-    image: "/assets/projects/onigashimastore.png",
-    bgImage: "/assets/backgrounds/map.jpg",
+    image: "/assets/projects/onigashimastore.avif",
+    bgImage: "/assets/backgrounds/map.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Next.js" },
@@ -131,8 +131,8 @@ export const projects = [
     description:
       "Static personal portfolio that presents projects, skills and a creative touch through interactive graphics and animations.",
     href: "https://github.com/JavGarin/Porfolio-Web-jg25",
-    image: "/assets/projects/designportfoliothree.png",
-    bgImage: "/assets/backgrounds/poster.jpg",
+    image: "/assets/projects/designportfoliothree.avif",
+    bgImage: "/assets/backgrounds/poster.avif",
     frameworks: [
       { id: 1, name: "HTML5" },
       { id: 2, name: "CSS"},
@@ -148,7 +148,7 @@ export const projects = [
       "A curated collection of designer home decor items, including furniture and artisan vases.",
     href: "",
     image: "/assets/projects/home-decor-store.jpg",
-    bgImage: "/assets/backgrounds/table.jpg",
+    bgImage: "/assets/backgrounds/table.avif",
     frameworks: [
       { id: 1, name: "Angular" },
       { id: 2, name: "Firebase" },
@@ -162,8 +162,8 @@ export const projects = [
     description:
       "A modern, responsive, and attractive landing page for a fictional gym named FitPro.",
     href: "https://fitpro-gym-xi.vercel.app/",
-    image: "/assets/projects/screenshot.avif",
-    bgImage: "/assets/backgrounds/curtains.jpg",
+    image: "/assets/projects/profitgym.avif",
+    bgImage: "/assets/backgrounds/curtains.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "TypeScript" },

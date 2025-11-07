@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { servicesData } from "../constants";
 import { useMediaQuery } from "react-responsive";
@@ -79,4 +79,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default memo(Services);

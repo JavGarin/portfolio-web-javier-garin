@@ -1,21 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import ServiceSummary from "./sections/ServiceSummary";
 import Services from "./sections/Services";
 import ReactLenis from "lenis/react";
-import About from "./sections/About";
-import Works from "./sections/Works";
-import ContactSummary from "./sections/ContactSummary";
-import Contact from "./sections/Contact";
 import { useProgress } from "@react-three/drei";
-import ScrollToTopButton from "./components/ScrollToTopButton";
+import { useMediaQuery } from "react-responsive";
+
+const About = lazy(() => import("./sections/About"));
+const Works = lazy(() => import("./sections/Works"));
+const ContactSummary = lazy(() => import("./sections/ContactSummary"));
+const Contact = lazy(() => import("./sections/Contact"));
 
 const App = () => {
   const { progress } = useProgress();
   const [isReady, setIsReady] = useState(false);
-  const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
   const contactRef = useRef(null);
+  const isDesktop = useMediaQuery({ minWidth: 1024 }); // lg breakpoint
 
   useEffect(() => {
     if (progress === 100) {
@@ -23,24 +24,8 @@ const App = () => {
     }
   }, [progress]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (contactRef.current) {
-        const contactSectionTop = contactRef.current.getBoundingClientRect().top;
-        if (contactSectionTop <= window.innerHeight) {
-          setShowScrollToTopButton(true);
-        } else {
-          setShowScrollToTopButton(false);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isReady]);
-
-  return (
-    <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
+  const content = (
+    <>
       {!isReady && (
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light">
           <p className="mb-4 text-xl tracking-widest animate-pulse">
@@ -63,13 +48,24 @@ const App = () => {
         <Hero />
         <ServiceSummary />
         <Services />
-        <About />
-        <Works />
-        <ContactSummary />
-        <Contact ref={contactRef} />
-        <ScrollToTopButton isVisible={showScrollToTopButton} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <About />
+          <Works />
+          <ContactSummary />
+          <Contact ref={contactRef} />
+        </Suspense>
       </div>
+    </>
+  );
+
+  return isDesktop ? (
+    <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
+      {content}
     </ReactLenis>
+  ) : (
+    <div className="relative w-screen min-h-screen overflow-x-auto">
+      {content}
+    </div>
   );
 };
 

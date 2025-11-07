@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Planet } from "../components/Planet";
 import { Environment, Float, Lightformer } from "@react-three/drei";
@@ -62,4 +63,4 @@ return (
 );
 };
 
-export default Hero;
+export default memo(Hero);

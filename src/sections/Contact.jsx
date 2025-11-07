@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, memo } from "react";
 import { useGSAP } from "@gsap/react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import Marquee from "../components/Marquee";
@@ -93,4 +93,4 @@ const Contact = forwardRef((props, ref) => {
   );
 });
 
-export default Contact;
+export default memo(Contact);

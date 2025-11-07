@@ -1,16 +1,19 @@
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import Marquee from "../components/Marquee";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ContactSummary = () => {
     const containerRef = useRef(null);
     const items = [
-        "Innovation",
-        "Precision",
-        "Trust",
-        "Collaboration",
-        "Excellence",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React",
+        "Node.js",
 ];
     const items2 = [
         "contact us",
@@ -21,16 +24,20 @@ const ContactSummary = () => {
 ];
 
     useGSAP(() => {
-        gsap.to(containerRef.current, {
-            scrollTrigger: {
-            trigger: containerRef.current,
-            start: "center center",
-            end: "+=800 center",
-            scrub: 0.5,
-            pin: true,
-            pinSpacing: true,
-            markers: false,
-        },
+        ScrollTrigger.matchMedia({
+          "(min-width: 768px)": function() {
+            gsap.to(containerRef.current, {
+                scrollTrigger: {
+                trigger: containerRef.current,
+                start: "center center",
+                end: "+=800 center",
+                scrub: 0.5,
+                pin: true,
+                pinSpacing: true,
+                markers: false,
+            },
+        });
+      },
     });
 }, []);
     return (
@@ -58,4 +65,4 @@ const ContactSummary = () => {
 );
 };
 
-export default ContactSummary;
+export default memo(ContactSummary);
