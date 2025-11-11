@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #e5e5e0;
+  --color-primary: #E6F1FF;
   --color-DarkLava: #393632;
   --color-SageGray: #8b8b73;
   --color-gold: #cfa355;
@@ -21,8 +21,8 @@
 }
 
 body {
-  background: #e5e5e0;
-  color: black;
+  background: var(--primary-bg);
+  color: var(--primary-text);
   scroll-behavior: smooth;
   overflow-x: hidden;
   font-family: var(--font-body);

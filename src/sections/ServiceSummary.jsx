@@ -64,7 +64,7 @@ return (
             className="flex items-center justify-center gap-3 md:translate-x-16"
             >
             <p className="font-normal">Frontends</p>
-            <div className="w-10 h-1 md:w-32 bg-gold" />
+            <div className="w-10 h-1 md:w-32 bg-accent" />
             <p>Design</p>
             </div>
             <div
@@ -72,9 +72,9 @@ return (
             className="flex items-center justify-center gap-3 md:-translate-x-48"
             >
             <p>APIs</p>
-            <div className="w-10 h-1 md:w-32 bg-gold" />
+            <div className="w-10 h-1 md:w-32 bg-accent" />
             <p className="italic">AI</p>
-            <div className="w-10 h-1 md:w-32 bg-gold" />
+            <div className="w-10 h-1 md:w-32 bg-accent" />
             <p>Scalability</p>
             </div>
             <div id="title-service-4"  className="md:translate-x-48">

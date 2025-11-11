@@ -20,25 +20,25 @@ export const servicesData = [
       },
     ],
   },
-  {
-    title: "DevOps & Cloud Solutions",
-    description:
-      "From commit to cloud with zero downtime. I specialize in automated, secure infrastructure on AWS/Azure to keep your application resilient and scalable, around the clock.",
-    items: [
-      {
-        title: "CI/CD Pipelines",
-        description: "(GitHub Actions, Docker, Kubernetes)",
-      },
-      {
-        title: "Server Management ",
-        description: "(Linux, Nginx, Load Balancing)",
-      },
-      {
-        title: "Performance Tuning",
-        description: "(Caching, Compression, Lighthouse 90+ Scores)",
-      },
-    ],
-  },
+  // {
+  //   title: "DevOps & Cloud Solutions",
+  //   description:
+  //     "From commit to cloud with zero downtime. I specialize in automated, secure infrastructure on AWS/Azure to keep your application resilient and scalable, around the clock.",
+  //   items: [
+  //     {
+  //       title: "CI/CD Pipelines",
+  //       description: "(GitHub Actions, Docker, Kubernetes)",
+  //     },
+  //     {
+  //       title: "Server Management ",
+  //       description: "(Linux, Nginx, Load Balancing)",
+  //     },
+  //     {
+  //       title: "Performance Tuning",
+  //       description: "(Caching, Compression, Lighthouse 90+ Scores)",
+  //     },
+  //   ],
+  // },
   {
     title: "Security & Optimization",
     description:
@@ -115,7 +115,7 @@ export const projects = [
     name: "Onigashima Store - Anime Collectibles",
     description:
       "An e-commerce platform for Anime products and accessories with offers and category filtering.",
-    href: "",
+    href: "https://github.com/JavGarin/onigashima-store-web",
     image: "/assets/projects/onigashimastore.avif",
     bgImage: "/assets/backgrounds/map.avif",
     frameworks: [
@@ -130,7 +130,7 @@ export const projects = [
     name: "Three.js Portfolio Design",
     description:
       "Static personal portfolio that presents projects, skills and a creative touch through interactive graphics and animations.",
-    href: "https://github.com/JavGarin/Porfolio-Web-jg25",
+    href: "https://javier-garin-dev.vercel.app/",
     image: "/assets/projects/designportfoliothree.avif",
     bgImage: "/assets/backgrounds/poster.avif",
     frameworks: [
@@ -146,7 +146,7 @@ export const projects = [
     name: "Home Decor Marketplace",
     description:
       "A curated collection of designer home decor items, including furniture and artisan vases.",
-    href: "",
+    href: "https://github.com/JavGarin/home-decor-marketplace",
     image: "/assets/projects/home-decor-store.jpg",
     bgImage: "/assets/backgrounds/table.avif",
     frameworks: [
@@ -167,9 +167,8 @@ export const projects = [
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "TypeScript" },
-      { id: 3, name: "Tailwind CSS" },
-      { id: 4, name: "Radix UI" },
-      { id: 5, name: "Vercel"},
+      { id: 3, name: "Radix UI" },
+      { id: 4, name: "Vercel"},
     ],
   },
 ];

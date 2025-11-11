@@ -15,7 +15,7 @@ return (
         subTitle={"Software Developer"}
         title={"Javier Garín"}
         text={text}
-        textColor={"text-black"}
+        textColor={"text-primary-text"}
     />
     <figure
         className="absolute inset-0 -z-50"

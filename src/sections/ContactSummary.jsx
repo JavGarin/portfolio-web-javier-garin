@@ -14,13 +14,21 @@ const ContactSummary = () => {
         "JavaScript",
         "React",
         "Node.js",
+        "Tailwind CSS",
+        "Next.js",
+        "TypeScript",
+        "GSAP",
+        "Three.js",
+        "Vercel",
+        "Supabase",
+        "Figma",
 ];
     const items2 = [
-        "contact us",
-        "contact us",
-        "contact us",
-        "contact us",
-        "contact us",
+        "contact me",
+        "contact me",
+        "contact me",
+        "contact me",
+        "contact me",
 ];
 
     useGSAP(() => {
@@ -51,14 +59,14 @@ const ContactSummary = () => {
             “ Let's design a <br />
             <span className="font-normal">powerful</span> &{" "}
             <span className="italic">visionary</span> <br />
-            digital product <span className="text-gold">together</span> “
+            digital product <span className="text-accent">together</span> “
         </p>
         </div>
         <Marquee
             items={items2}
             reverse={true}
-            className="text-black bg-transparent border-y-2"
-            iconClassName="stroke-gold stroke-2 text-primary"
+            className="text-primary-text bg-transparent border-y-2 border-secondary-text"
+            iconClassName="stroke-accent stroke-2 text-primary-text"
             icon="material-symbols-light:square"
         />
     </section>
