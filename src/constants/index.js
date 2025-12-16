@@ -96,7 +96,7 @@ export const projects = [
   },
   {
     id: 2,
-    name: "Energy Store - Frontend E-commerce Simulation Carousel",
+    name: "Energy Store - Frontend E-commerce Carousel",
     description:
       "This website was developed using pure front-end technologies, with no reliance on external frameworks or libraries.",
     href: "https://web-carousel-ivory.vercel.app/",
