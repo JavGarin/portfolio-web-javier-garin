@@ -27,35 +27,6 @@ This project was built using a modern frontend stack:
 *   **[GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/)**: A professional-grade animation library for JavaScript.
 *   **[i18next](https://www.i18next.com/)**: An internationalization framework for JavaScript.
 
-## Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-### Prerequisites
-
-Make sure you have Node.js and npm installed on your machine.
-*   npm
-    ```sh
-    npm install npm@latest -g
-    ```
-
-### Installation
-
-1.  Clone the repo
-    ```sh
-    git clone https://github.com/JavGarin/portfolio-web-javiergarin.git
-    ```
-2.  Install NPM packages
-    ```sh
-    npm install
-    ```
-3.  Run the development server
-    ```sh
-    npm run dev
-    ```
-
-The application will be available at `http://localhost:5173`.
-
 ## Author
 
 **JavGarin**
