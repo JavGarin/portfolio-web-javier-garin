@@ -86,7 +86,6 @@ export const projects = [
       "ElderWizz AI is an interactive web application designed to help developers improve the quality of their code.",
     href: "https://github.com/JavGarin/elder-wizz-ai",
     image: "/assets/projects/elderwizz.avif",
-    bgImage: "/assets/backgrounds/Network.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Gemini API" },
@@ -97,17 +96,16 @@ export const projects = [
   },
   {
     id: 2,
-    name: "Country House Chile - E-commerce Store",
+    name: "Energy Store - Frontend E-commerce Simulation Carousel",
     description:
-      "An online store specializing in creative and handmade items with a clean and easy-to-use interface.",
-    href: "https://github.com/JavGarin/web-shoping-astro",
-    image: "/assets/projects/country-house-chile.avif",
-    bgImage: "/assets/backgrounds/curtains.avif",
+      "This website was developed using pure front-end technologies, with no reliance on external frameworks or libraries.",
+    href: "https://web-carousel-ivory.vercel.app/",
+    image: "/assets/projects/energy-store.avif",
     frameworks: [
-      { id: 1, name: "Astro" },
-      { id: 2, name: "TypeScript" },
-      { id: 3, name: "Supabase" },
-      { id: 4, name: "Tailwind CSS" },
+      { id: 1, name: "HTML5" },
+      { id: 2, name: "CSS3" },
+      { id: 3, name: "JavaScript" },
+      { id: 4, name: "Vercel" },
     ],
   },
   {
@@ -117,7 +115,6 @@ export const projects = [
       "An e-commerce platform for Anime products and accessories with offers and category filtering.",
     href: "https://github.com/JavGarin/onigashima-store-web",
     image: "/assets/projects/onigashimastore.avif",
-    bgImage: "/assets/backgrounds/map.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Next.js" },
@@ -132,7 +129,6 @@ export const projects = [
       "Static personal portfolio that presents projects, skills and a creative touch through interactive graphics and animations.",
     href: "https://javier-garin-dev.vercel.app/",
     image: "/assets/projects/designportfoliothree.avif",
-    bgImage: "/assets/backgrounds/poster.avif",
     frameworks: [
       { id: 1, name: "HTML5" },
       { id: 2, name: "CSS"},
@@ -148,7 +144,6 @@ export const projects = [
       "A modern and responsive e-commerce simulation for tech products, built with cutting-edge web technologies.",
     href: "https://tech-store-web-nine.vercel.app/",
     image: "/assets/projects/techstore.avif",
-    bgImage: "/assets/backgrounds/table.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Firebase" },
@@ -163,7 +158,6 @@ export const projects = [
       "A modern, responsive, and attractive landing page for a fictional gym named FitPro.",
     href: "https://fitpro-gym-xi.vercel.app/",
     image: "/assets/projects/profitgym.avif",
-    bgImage: "/assets/backgrounds/curtains.avif",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "TypeScript" },
