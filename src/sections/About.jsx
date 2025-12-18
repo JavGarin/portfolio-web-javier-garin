@@ -55,7 +55,7 @@ const About = () => {
             alt="Javier Garín"
             className="w-md rounded-3xl"
         />
-        <AnimatedTextLines text={t('about_text_2')} className={"w-full"} />
+        <AnimatedTextLines text={t('about_text_2')} className={"w-full max-w-2xl lg:mx-auto"} />
         </div>
     </section>
 );

@@ -28,7 +28,7 @@ return (
         <span
         key={index}
         ref={(el) => (lineRefs.current[index] = el)}
-        className="block leading-relaxed tracking-wide text-pretty"
+        className="block leading-relaxed tracking-wide md:text-justify"
         >
         {line}
         </span>
