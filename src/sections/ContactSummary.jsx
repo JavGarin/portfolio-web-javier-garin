@@ -92,7 +92,7 @@ const ContactSummary = () => {
         >
             <Marquee items={items} />
             <div ref={textRef} className="overflow-hidden font-light text-center contact-text-responsive relative z-10 cursor-pointer">
-                <p className="relative z-10 text-black" style={{ textShadow: '0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6)' }}>
+                <p className="relative z-10 text-primary-text" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2)' }}>
                     {phrase.split(" ").map((word, wordIndex) => (
                         <span key={wordIndex} className="inline-block word-animation">
                             {word.split("").map((char, charIndex) => (

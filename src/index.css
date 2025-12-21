@@ -1,22 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle:wght@400;900&family=Montserrat:wght@300;400&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #E6F1FF;
-  --color-DarkLava: #393632;
-  --color-SageGray: #8b8b73;
-  --color-gold: #cfa355;
+/* Definición de variables globales y fuentes */
+:root {
+  /* Paleta Monocromática Moderna - Escala de Grises */
+  --color-darkest: #0A0A0A;        /* Negro profundo */
+  --color-darker: #1A1A1A;         /* Gris muy oscuro */
+  --color-dark: #2A2A2A;           /* Gris oscuro */
+  --color-medium-dark: #404040;    /* Gris medio oscuro */
+  --color-medium: #707070;         /* Gris medio */
+  --color-medium-light: #A0A0A0;   /* Gris medio claro */
+  --color-light: #D0D0D0;          /* Gris claro */
+  --color-lighter: #E8E8E8;        /* Gris muy claro */
+  --color-lightest: #F5F5F5;       /* Casi blanco */
+  --color-white: #FFFFFF;          /* Blanco puro */
+  
+  /* Acento sutil (opcional para hover/focus) */
+  --color-accent: #505050;         /* Gris neutro para acentos */
+  --color-accent-light: #909090;   /* Gris claro para hover */
+
+  /* Colores base para el tema */
+  --primary-bg: var(--color-darkest);
+  --primary-text: var(--color-lightest);
+
+  /* Tipografías */
   --font-headings: "BBH Sans Bogle", sans-serif;
   --font-body: "Montserrat", sans-serif;
 
+  /* Animaciones */
   --animate-marquee: marquee 40s infinite linear;
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
+}
+
+/* Animación de marquesina */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
   }
 }
 
@@ -28,22 +48,112 @@ body {
   font-family: var(--font-body);
 }
 
-@utility clip-path {
+/* Clases de utilidad para colores personalizados */
+.bg-primary-bg {
+  background-color: var(--color-darkest);
+}
+
+.bg-secondary-bg {
+  background-color: var(--color-lighter);
+}
+
+.bg-dark {
+  background-color: var(--color-dark);
+}
+
+.bg-medium {
+  background-color: var(--color-medium);
+}
+
+.bg-light {
+  background-color: var(--color-light);
+}
+
+.text-primary-text {
+  color: var(--color-lightest);
+}
+
+.text-secondary-text {
+  color: var(--color-medium-light);
+}
+
+.text-dark {
+  color: var(--color-darker);
+}
+
+.text-medium {
+  color: var(--color-medium);
+}
+
+.text-light {
+  color: var(--color-light);
+}
+
+.text-accent {
+  color: var(--color-accent-light);
+}
+
+.text-accent-light {
+  color: var(--color-light);
+}
+
+.border-accent {
+  border-color: var(--color-accent);
+}
+
+.border-light {
+  border-color: var(--color-light);
+}
+
+.border-medium {
+  border-color: var(--color-medium);
+}
+
+.border-secondary-text {
+  border-color: var(--color-medium-light);
+}
+
+.stroke-accent {
+  stroke: var(--color-accent-light);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.bg-accent-light {
+  background-color: var(--color-accent-light);
+}
+
+[class*="dark-section-active"] .bg-neutral-800,
+.\[\.dark-section-active_\&\]\:bg-neutral-800 {
+  background-color: rgb(38 38 38);
+}
+
+[class*="dark-section-active"] .bg-black\/70,
+.\[\.dark-section-active_\&\]\:bg-black\/70 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+/* Utilidad para clip-path */
+.clip-path {
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
 }
 
-@utility banner-text-responsive {
+/* Utilidades para texto responsivo */
+.banner-text-responsive {
   @apply text-[48px] sm:text-[118px] md:text-[126px] lg:text-[152px] leading-9 sm:leading-16 lg:leading-20;
 }
 
-@utility value-text-responsive {
+.value-text-responsive {
   @apply text-lg md:text-[26px] lg:text-[32px];
 }
 
-@utility marquee-text-responsive {
+.marquee-text-responsive {
   @apply text-[28px] sm:text-[36px] lg:text-[42px];
 }
 
-@utility contact-text-responsive {
+.contact-text-responsive {
   @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
 }

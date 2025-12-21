@@ -57,7 +57,7 @@ useGSAP(() => {
             </p>
         <div className="px-10">
             <h1
-                className={`flex flex-col gap-12 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
+                className={`flex flex-col gap-2 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
             >
                 {titleParts.map((part, index) => (
                 <span key={index}>{part} </span>

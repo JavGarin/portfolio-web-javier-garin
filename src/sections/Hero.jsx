@@ -16,7 +16,7 @@ const Hero = () => {
         subTitle={t('hero_subtitle')}
         title={t('hero_title')}
         text={t('hero_text')}
-        textColor={"text-primary-text"}
+        textColor={"text-secondary-text"}
       />
       <figure
         className="absolute inset-0 -z-50"
@@ -24,6 +24,7 @@ const Hero = () => {
       >
         <Canvas
           shadows
+          dpr={[1, 2]}
           camera={{ position: [0, 0, -10], fov: 17.5, near: 1, far: 20 }}
         >
           <ambientLight intensity={0.5} />
