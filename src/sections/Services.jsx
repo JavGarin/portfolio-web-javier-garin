@@ -39,7 +39,7 @@ const Services = () => {
         <div
           ref={(el) => (serviceRefs.current[index] = el)}
           key={index}
-          className="sticky px-10 pt-6 pb-12 text-white bg-black border-t-2 border-white/30"
+          className="sticky px-10 pt-6 pb-12 text-white bg-black border-t-2 border-white/80"
           style={
             isDesktop
               ? {
@@ -52,20 +52,20 @@ const Services = () => {
           <div className="flex items-center justify-between gap-4 font-light">
             <div className="flex flex-col gap-6">
               <h2 className="text-4xl lg:text-5xl">{t(`service_${index + 1}_title`)}</h2>
-              <p className="text-xl leading-relaxed tracking-widest lg:text-2xl text-white/60 text-pretty">
+              <p className="text-xl leading-relaxed tracking-widest lg:text-2xl text-white/80 text-pretty">
                 {t(`service_${index + 1}_desc`)}
               </p>
               <div className="flex flex-col gap-2 text-2xl sm:gap-4 lg:text-3xl text-white/80">
                 {service.items.map((item, itemIndex) => (
                   <div key={`item-${index}-${itemIndex}`}>
                     <h3 className="flex">
-                      <span className="mr-12 text-lg text-white/30">
+                      <span className="mr-12 text-lg text-white/80">
                         0{itemIndex + 1}
                       </span>
                       {t(`service_${index + 1}_item_${itemIndex + 1}_title`)}
                     </h3>
                     {itemIndex < service.items.length - 1 && (
-                      <div className="w-full h-px my-2 bg-white/30" />
+                      <div className="w-full h-px my-2 bg-white/80" />
                     )}
                   </div>
                 ))}
