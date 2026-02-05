@@ -1,5 +1,5 @@
 import { memo, useRef, useState } from "react";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { projects } from "../constants";
 import gsap from "gsap";
@@ -48,13 +48,15 @@ const Works = () => {
     if (!el) return;
 
     gsap.killTweensOf(el);
+    // Animación compuesta (GPU) en lugar de clipPath
     gsap.fromTo(
       el,
       {
-        clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+        scaleY: 0,
+        transformOrigin: "bottom center",
       },
       {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+        scaleY: 1,
         duration: 0.15,
         ease: "power2.out",
       }
@@ -76,8 +78,10 @@ const Works = () => {
     if (!el) return;
 
     gsap.killTweensOf(el);
+    // Animación compuesta (GPU)
     gsap.to(el, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+      scaleY: 0,
+      transformOrigin: "bottom center",
       duration: 0.2,
       ease: "power2.in",
     });
@@ -128,7 +132,7 @@ const Works = () => {
                 ref={(el) => {
                   overlayRefs.current[index] = el;
                 }}
-                className="absolute inset-0 duration-200 bg-primary-bg -z-10 clip-path"
+                className="absolute inset-0 duration-200 bg-primary-bg -z-10 scale-y-0 origin-bottom"
               />
               <div className="flex justify-between px-10 text-primary-text transition-all duration-500 md:group-hover:px-12 md:group-hover:text-accent">
                 <h2 className="lg:text-[32px] text-[26px] leading-none">
@@ -154,6 +158,10 @@ const Works = () => {
               <img
                 src={project.image}
                 alt={t(`project_${project.id}_name`)}
+                width={400}
+                height={240}
+                loading="lazy"
+                decoding="async"
                 className="object-contain w-full rounded-lg h-60"
               />
               <div className="flex flex-col px-2">
@@ -183,6 +191,10 @@ const Works = () => {
             <img
               src={projects[currentIndex].image}
               alt="preview"
+              width={960}
+              height={540}
+              loading="eager"
+              decoding="async"
               className="object-cover w-full h-full"
             />
           )}

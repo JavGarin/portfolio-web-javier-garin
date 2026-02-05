@@ -40,6 +40,16 @@
   }
 }
 
+/* Animación optimizada para el componente Marquee - usa transform (GPU) */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 body {
   background: var(--primary-bg);
   color: var(--primary-text);
@@ -136,10 +146,7 @@ body {
 }
 
 
-/* Utilidad para clip-path */
-.clip-path {
-  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-}
+
 
 /* Utilidades para texto responsivo */
 .banner-text-responsive {

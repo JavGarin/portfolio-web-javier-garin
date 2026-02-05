@@ -4,6 +4,9 @@ import { servicesData } from "../constants";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import { useTranslation } from "react-i18next";
 
 const Services = () => {
@@ -12,6 +15,18 @@ const Services = () => {
   const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
 
   useGSAP(() => {
+    // ScrollTrigger para activar el modo oscuro en la sección
+    ScrollTrigger.create({
+      trigger: "#services",
+      start: "top 40%",
+      end: "bottom 60%",
+      toggleClass: {
+        targets: "body",
+        className: "dark-section-active",
+      },
+      scrub: true,
+    });
+
     serviceRefs.current.forEach((el) => {
       if (!el) return;
 

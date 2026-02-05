@@ -29,12 +29,14 @@ const About = () => {
         },
     });
 
+    // Animación compuesta (GPU) en lugar de clipPath (no compuesta)
     gsap.set(imgRef.current, {
-        clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
+        scaleY: 0,
+        transformOrigin: "bottom center",
     });
     gsap.to(imgRef.current, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 2,
+        scaleY: 1,
+        duration: 1.2,
         ease: "power4.out",
         scrollTrigger: { trigger: imgRef.current },
     });
@@ -53,6 +55,10 @@ const About = () => {
             ref={imgRef}
             src="images/man.avif"
             alt="Javier Garín"
+            width={500}
+            height={600}
+            loading="lazy"
+            decoding="async"
             className="w-md rounded-3xl"
         />
         <AnimatedTextLines text={t('about_text_2')} className={"w-full max-w-2xl lg:mx-auto"} />

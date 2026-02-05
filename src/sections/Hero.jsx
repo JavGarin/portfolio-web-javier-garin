@@ -1,66 +1,105 @@
-import { memo } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Planet } from "../components/Planet";
-import { Environment, Float, Lightformer } from "@react-three/drei";
-import { useMediaQuery } from "react-responsive";
-import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
+import { memo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Hero = () => {
   const { t } = useTranslation();
-  const isMobile = useMediaQuery({ maxWidth: 853 });
+  const containerRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const descriptionRef = useRef(null);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      gsap.killTweensOf([containerRef.current, subtitleRef.current, firstNameRef.current, lastNameRef.current, descriptionRef.current]);
+    };
+  }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" }
+    });
+
+    // Animación inicial del contenedor
+    tl.from(containerRef.current, {
+      opacity: 0,
+      duration: 0.4,
+    });
+
+    // Subtítulo con fade sutil
+    tl.from(subtitleRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+    }, "-=0.2");
+
+    // Nombre (Javier) - entrada elegante
+    tl.from(firstNameRef.current, {
+      opacity: 0,
+      y: 60,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.3");
+
+    // Apellido (Garín) - entrada elegante con delay
+    tl.from(lastNameRef.current, {
+      opacity: 0,
+      y: 60,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.5");
+
+    // Descripción con fade suave
+    tl.from(descriptionRef.current, {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+    }, "-=0.3");
+
+  }, []);
 
   return (
-    <section id="home" className="flex flex-col justify-end min-h-screen">
-      <AnimatedHeaderSection
-        subTitle={t('hero_subtitle')}
-        title={t('hero_title')}
-        text={t('hero_text')}
-        textColor={"text-secondary-text"}
-      />
-      <figure
-        className="absolute inset-0 -z-50"
-        style={{ width: "100vw", height: "100vh" }}
-      >
-        <Canvas
-          shadows
-          dpr={[1, 2]}
-          camera={{ position: [0, 0, -10], fov: 17.5, near: 1, far: 20 }}
+    <section 
+      id="home" 
+      className="min-h-screen flex flex-col justify-center bg-black px-6 sm:px-12 lg:px-20"
+    >
+      <div ref={containerRef} className="max-w-7xl mx-auto w-full">
+        {/* Subtítulo */}
+        <p
+          ref={subtitleRef}
+          className="text-white/70 text-sm sm:text-base font-light tracking-[0.3em] uppercase mb-6 sm:mb-8"
         >
-          <ambientLight intensity={0.5} />
-          <Float speed={0.5}>
-            <Planet scale={isMobile ? 0.7 : 1} />
-          </Float>
-          <Environment resolution={256}>
-            <group rotation={[-Math.PI / 3, 4, 1]}>
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[0, 5, -9]}
-                scale={10}
-              />
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[0, 3, 1]}
-                scale={10}
-              />
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[-5, -1, -1]}
-                scale={10}
-              />
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[10, 1, 0]}
-                scale={16}
-              />
-            </group>
-          </Environment>
-        </Canvas>
-      </figure>
+          {t('hero_subtitle')}
+        </p>
+
+        {/* Nombre principal - Separado en dos líneas */}
+        <div className="overflow-hidden">
+          <h1 className="flex flex-col leading-none">
+            <span
+              ref={firstNameRef}
+              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase"
+            >
+              Javier
+            </span>
+            <span
+              ref={lastNameRef}
+              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase -mt-2 sm:-mt-4 lg:-mt-8"
+            >
+              Garín
+            </span>
+          </h1>
+        </div>
+
+        {/* Descripción */}
+        <div ref={descriptionRef} className="mt-8 sm:mt-12 max-w-xl ml-auto text-right">
+          <p className="text-white/80 text-sm sm:text-base font-light uppercase tracking-wide leading-relaxed">
+            {t('hero_text')}
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

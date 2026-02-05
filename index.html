@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/images/Logo-JG-portfolio.ico" />
+    <link rel="icon" type="image/x-icon" href="/images/Logo-JG-portfolio.ico" />
     
     <!-- Viewport optimizado -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -55,15 +55,25 @@
     }
     </script>
     
-    <!-- Preconexión para mejorar performance -->
+    <!-- Google Fonts (Non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle:wght@400;900&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link 
+      href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle:wght@400;900&family=Montserrat:wght@300;400&display=swap" 
+      rel="stylesheet" 
+      media="print" 
+      onload="this.media='all'"
+    >
+    <noscript>
+      <link 
+        href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle:wght@400;900&family=Montserrat:wght@300;400&display=swap" 
+        rel="stylesheet"
+      >
+    </noscript>
     
     <!-- Preload de recursos críticos -->
-    <link rel="preload" href="/src/main.jsx" as="script">
+    <!-- fonts preloaded via preconnect above -->
     
     <!-- Tema de color para navegadores -->
     <meta name="theme-color" content="#2563eb" />

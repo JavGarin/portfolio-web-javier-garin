@@ -113,6 +113,7 @@ const Navbar = () => {
                 <Link
                   className="transition-all duration-300 cursor-pointer hover:text-accent [.dark-section-active_&]:text-white [.dark-section-active_&]:[text-shadow:0_0_5px_rgba(255,255,255,0.5)]"
                   to={`${section}`}
+                  href={`#${section}`}
                   smooth
                   offset={0}
                   duration={500}
