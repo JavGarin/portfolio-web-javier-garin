@@ -2,7 +2,7 @@
 
 This is a modern and interactive personal portfolio website built to showcase my skills, projects, and experience as a software developer. The site is designed to be visually engaging, fully responsive, and performant.
 
-![Portfolio Screenshot](./public/images/screenshot-portfolio-web.avif)
+![Portfolio Screenshot](./public/images/screenshot-portfolio-web.jpg)
 
 ## About The Project
 
