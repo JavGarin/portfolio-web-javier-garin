@@ -23,7 +23,6 @@ This project was built using a modern frontend stack:
 *   **[React](https://reactjs.org/)**: A JavaScript library for building user interfaces.
 *   **[Vite](https://vitejs.dev/)**: A fast and lightweight build tool for modern web development.
 *   **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for rapid UI development.
-*   **[Three.js](https://threejs.org/)**: A JavaScript library for creating and displaying 3D computer graphics in a web browser.
 *   **[GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/)**: A professional-grade animation library for JavaScript.
 *   **[i18next](https://www.i18next.com/)**: An internationalization framework for JavaScript.
 
