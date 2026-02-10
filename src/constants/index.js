@@ -84,7 +84,7 @@ export const projects = [
     name: "ElderWizz AI - Code Assistant and Programming Mentor",
     description:
       "ElderWizz AI is an interactive web application designed to help developers improve the quality of their code.",
-    href: "https://github.com/JavGarin/elder-wizz-ai",
+    href: "https://elder-wizz-ai.vercel.app/",
     image: "/assets/projects/elderwizz.avif",
     frameworks: [
       { id: 1, name: "React" },

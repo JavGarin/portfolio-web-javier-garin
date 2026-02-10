@@ -64,13 +64,37 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex flex-col justify-center bg-black px-6 sm:px-12 lg:px-20"
+      className="relative min-h-screen flex flex-col justify-center bg-black px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
-      <div ref={containerRef} className="max-w-7xl mx-auto w-full">
+      {/* Video de fondo - Más visible */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-label="Video de fondo decorativo con arena y sombras"
+        className="absolute inset-0 w-full h-full object-cover opacity-80 hidden md:block" // Opacidad aumentada al 80%
+        style={{ willChange: 'transform' }}
+      >
+        <source src="/video/shadowSandHero.webm" type="video/webm" />
+      </video>
+
+      {/* Overlay sutil solo para contraste del texto, sin oscurecer todo el video */}
+      <div 
+        className="absolute inset-0 bg-black/30" // Overlay muy suave (30%)
+        aria-hidden="true"
+      />
+
+      {/* Contenido limpio sin borde ni fondo */}
+      <div 
+        ref={containerRef} 
+        className="relative z-10 max-w-7xl mx-auto w-full" // Eliminado backdrop-blur, bg-black y border
+      >
         {/* Subtítulo */}
         <p
           ref={subtitleRef}
-          className="text-white/70 text-sm sm:text-base font-light tracking-[0.3em] uppercase mb-6 sm:mb-8"
+          className="text-white/80 text-sm sm:text-base font-light tracking-[0.3em] uppercase mb-6 sm:mb-8 drop-shadow-md"
         >
           {t('hero_subtitle')}
         </p>
@@ -80,13 +104,13 @@ const Hero = () => {
           <h1 className="flex flex-col leading-none">
             <span
               ref={firstNameRef}
-              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase"
+              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase drop-shadow-2xl"
             >
               Javier
             </span>
             <span
               ref={lastNameRef}
-              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase -mt-2 sm:-mt-4 lg:-mt-8"
+              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase -mt-2 sm:-mt-4 lg:-mt-8 drop-shadow-2xl"
             >
               Garín
             </span>
@@ -95,7 +119,7 @@ const Hero = () => {
 
         {/* Descripción */}
         <div ref={descriptionRef} className="mt-8 sm:mt-12 max-w-xl ml-auto text-right">
-          <p className="text-white/80 text-sm sm:text-base font-light uppercase tracking-wide leading-relaxed">
+          <p className="text-white font-light text-sm sm:text-base uppercase tracking-wide leading-relaxed drop-shadow-lg">
             {t('hero_text')}
           </p>
         </div>

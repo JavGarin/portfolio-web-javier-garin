@@ -11,7 +11,8 @@ const AnimatedHeaderSection = ({
     textColor,
     withScrollTrigger = false,
 }) => {
-    const contextRef = useRef(null);
+    const triggerRef = useRef(null);
+    const contentRef = useRef(null);
     const headerRef = useRef(null);
     const subtitleRef = useRef(null);
     const titleRef = useRef(null);
@@ -23,7 +24,7 @@ const AnimatedHeaderSection = ({
     // Cleanup on unmount para evitar memory leaks
     useEffect(() => {
         return () => {
-            gsap.killTweensOf([contextRef.current, headerRef.current, subtitleRef.current, titleRef.current, wordsRef.current]);
+            gsap.killTweensOf([contentRef.current, headerRef.current, subtitleRef.current, titleRef.current, wordsRef.current]);
         };
     }, []);
 
@@ -32,7 +33,7 @@ const AnimatedHeaderSection = ({
         const tl = gsap.timeline({
             scrollTrigger: withScrollTrigger
                 ? {
-                    trigger: contextRef.current,
+                    trigger: triggerRef.current,
                     start: "top 80%",
                     end: "bottom 20%",
                     toggleActions: "play none none reverse",
@@ -43,8 +44,8 @@ const AnimatedHeaderSection = ({
             }
         });
 
-        // Animación del contenedor principal
-        tl.from(contextRef.current, {
+        // Animación del contenedor principal (ahora animamos el contenido interno, no el trigger)
+        tl.from(contentRef.current, {
             y: "50vh",
             duration: 1.2,
             ease: "circ.out",
@@ -108,46 +109,48 @@ const AnimatedHeaderSection = ({
     }, [withScrollTrigger, titleParts.length]);
 
     return (
-        <div ref={contextRef}>
-            <div
-                ref={headerRef}
-                className="flex flex-col justify-center gap-12 pt-16 sm:gap-16"
-            >
-                <p
-                    ref={subtitleRef}
-                    className={`text-sm font-light tracking-[0.5rem] uppercase px-10 ${textColor}`}
+        <div ref={triggerRef}>
+            <div ref={contentRef}>
+                <div
+                    ref={headerRef}
+                    className="flex flex-col justify-center gap-12 pt-16 sm:gap-16"
                 >
-                    {subTitle.split('\n').map((line, index) => (
-                        <React.Fragment key={index}>
-                            {line}
-                            {index < subTitle.split('\n').length - 1 && <br />}
-                        </React.Fragment>
-                    ))}
-                </p>
-                <div className="px-10">
-                    <h1
-                        ref={titleRef}
-                        className={`flex flex-col gap-2 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
-                        style={{ perspective: '1000px' }}
+                    <p
+                        ref={subtitleRef}
+                        className={`text-sm font-light tracking-[0.5rem] uppercase px-10 ${textColor}`}
                     >
-                        {titleParts.map((part, index) => (
-                            <span 
-                                key={index}
-                                ref={(el) => (wordsRef.current[index] = el)}
-                                className="inline-block"
-                            >
-                                {part}{' '}
-                            </span>
+                        {subTitle.split('\n').map((line, index) => (
+                            <React.Fragment key={index}>
+                                {line}
+                                {index < subTitle.split('\n').length - 1 && <br />}
+                            </React.Fragment>
                         ))}
-                    </h1>
+                    </p>
+                    <div className="px-10">
+                        <h1
+                            ref={titleRef}
+                            className={`flex flex-col gap-2 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
+                            style={{ perspective: '1000px' }}
+                        >
+                            {titleParts.map((part, index) => (
+                                <span 
+                                    key={index}
+                                    ref={(el) => (wordsRef.current[index] = el)}
+                                    className="inline-block"
+                                >
+                                    {part}{' '}
+                                </span>
+                            ))}
+                        </h1>
+                    </div>
                 </div>
-            </div>
-            <div className={`relative px-10 ${textColor}`}>
-                <div className="py-12 sm:py-16 text-end">
-                    <AnimatedTextLines
-                        text={text}
-                        className={`font-light uppercase value-text-responsive ${textColor}`}
-                    />
+                <div className={`relative px-10 ${textColor}`}>
+                    <div className="py-12 sm:py-16 text-end">
+                        <AnimatedTextLines
+                            text={text}
+                            className={`font-light uppercase value-text-responsive ${textColor}`}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

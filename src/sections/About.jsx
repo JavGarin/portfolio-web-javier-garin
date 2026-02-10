@@ -29,16 +29,22 @@ const About = () => {
         },
     });
 
-    // Animación compuesta (GPU) en lugar de clipPath (no compuesta)
+    // Animación moderna: fade-in + slide-up + scale
     gsap.set(imgRef.current, {
-        scaleY: 0,
-        transformOrigin: "bottom center",
+        opacity: 0,
+        y: 60,
+        scale: 0.95,
     });
     gsap.to(imgRef.current, {
-        scaleY: 1,
+        opacity: 1,
+        y: 0,
+        scale: 1,
         duration: 1.2,
-        ease: "power4.out",
-        scrollTrigger: { trigger: imgRef.current },
+        ease: "power3.out",
+        scrollTrigger: { 
+            trigger: imgRef.current,
+            start: "top 85%",
+        },
     });
 });
     return (

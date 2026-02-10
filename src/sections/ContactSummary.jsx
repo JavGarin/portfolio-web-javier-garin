@@ -14,7 +14,7 @@ const ContactSummary = () => {
 
     const items = [
         "HTML5", "CSS3", "JavaScript", "React", "Node.js", "Tailwind CSS",
-        "Next.js", "TypeScript", "GSAP", "Three.js", "Vercel", "Supabase", "Figma",
+        "TypeScript", "GSAP", "Three.js", "SQL", "AI", "Git", "CI/CD", "Docker",
     ];
     const items2 = [
         "contact me", "contact me", "contact me", "contact me", "contact me",
