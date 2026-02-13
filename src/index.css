@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Configuración de Tailwind v4 */
+@theme {
+  /* Breakpoints personalizados */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
 /* Definición de variables globales y fuentes */
 :root {
   /* Paleta Monocromática Moderna - Escala de Grises */
@@ -162,5 +172,91 @@ body {
 }
 
 .contact-text-responsive {
-  @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
+  @apply text-[32px] sm:text-[52px] md:text-[62px] lg:text-[100px] leading-tight;
+}
+
+/* Estilos para Marquee Infinito */
+/* Estilos para Marquee Infinito */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: clip; /* Previene scroll horizontal en mobile */
+}
+
+.marquee-content {
+  display: flex;
+  width: fit-content;
+  will-change: transform;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--color-lightest);
+  white-space: nowrap;
+  padding: 0 4rem;
+  letter-spacing: 0.05em;
+}
+
+.marquee-separator {
+  margin: 0 2rem;
+  font-size: 0.8em;
+  opacity: 0.3;
+  font-weight: 100;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .marquee-item {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding: 0 1rem;
+  }
+  
+  .marquee-separator {
+    margin: 0 1rem;
+  }
+}
+
+/* Estilos para Floating Pills */
+.service-pill {
+  position: relative;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-darker);
+  border-radius: 9999px;
+  border: 1px solid var(--color-medium-dark);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.service-pill:hover {
+  background: var(--color-dark);
+  border-color: var(--color-accent-light);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(160, 160, 160, 0.1);
+}
+
+.pill-text {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 400;
+  color: var(--color-lightest);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.service-pill:hover .pill-text {
+  color: var(--color-white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .service-pill {
+    padding: 0.6rem 1.4rem;
+  }
+  
+  .pill-text {
+    font-size: clamp(0.875rem, 3vw, 1.125rem);
+  }
 }

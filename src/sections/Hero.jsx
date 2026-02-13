@@ -74,7 +74,7 @@ const Hero = () => {
         playsInline
         preload="metadata"
         aria-label="Video de fondo decorativo con arena y sombras"
-        className="absolute inset-0 w-full h-full object-cover opacity-80 hidden md:block" // Opacidad aumentada al 80%
+        className="absolute inset-0 w-full h-full object-cover opacity-80" // Opacidad aumentada al 80%
         style={{ willChange: 'transform' }}
       >
         <source src="/video/shadowSandHero.webm" type="video/webm" />

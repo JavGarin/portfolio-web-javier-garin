@@ -1,96 +1,109 @@
-import { memo } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useMediaQuery } from "react-responsive";
-import Marquee from "../components/Marquee";
 import { useTranslation } from "react-i18next";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const ServiceSummary = () => {
-  const { t } = useTranslation();
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const services = [
-    "architecture",
-    "frontends",
-    "design",
-    "apis",
-    "ai",
-    "scalability",
-    "backend",
-  ];
-  const translatedServices = services.map(service => t(`service_summary_${service}`));
+    const { t } = useTranslation();
+    const containerRef = useRef(null);
 
-  useGSAP(() => {
-    ScrollTrigger.matchMedia({
-      "(min-width: 768px)": function () {
-        gsap.to("#title-service-1", {
-          xPercent: 20,
-          scrollTrigger: {
-            target: "#title-service-1",
-            scrub: true,
-          },
-        });
-        gsap.to("#title-service-2", {
-          xPercent: -30,
-          scrollTrigger: {
-            target: "#title-service-2",
-            scrub: true,
-          },
-        });
-        gsap.to("#title-service-3", {
-          xPercent: 100,
-          scrollTrigger: {
-            target: "#title-service-3",
-            scrub: true,
-          },
-        });
-        gsap.to("#title-service-4", {
-          xPercent: -100,
-          scrollTrigger: {
-            target: "#title-service-4",
-            scrub: true,
-          },
-        });
-      },
-    });
-  });
+    const services = [
+        'architecture',
+        'frontends',
+        'design',
+        'apis',
+        'ai',
+        'scalability',
+        'backend'
+    ];
 
-  return (
-    <section className="flex flex-col items-center mt-20 overflow-hidden font-light leading-snug text-center mb-42 contact-text-responsive">
-      {isMobile ? (
-        <Marquee items={translatedServices} />
-      ) : (
-        <>
-          <div id="title-service-1">
-            <p>{t('service_summary_architecture')}</p>
-          </div>
-          <div
-            id="title-service-2"
-            className="flex items-center justify-center gap-3 md:translate-x-16"
-          >
-            <p className="font-normal">{t('service_summary_frontends')}</p>
-            <div className="w-10 h-1 md:w-32 bg-accent" />
-            <p>{t('service_summary_design')}</p>
-          </div>
-          <div
-            id="title-service-3"
-            className="flex items-center justify-center gap-3 md:-translate-x-48"
-          >
-            <p>{t('service_summary_apis')}</p>
-            <div className="w-10 h-1 md:w-32 bg-accent" />
-            <p className="italic">{t('service_summary_ai')}</p>
-            <div className="w-10 h-1 md:w-32 bg-accent" />
-            <p>{t('service_summary_scalability')}</p>
-          </div>
-          <div id="title-service-4" className="md:translate-x-48">
-            <p className="font-normal">{t('service_summary_backend')}</p>
-          </div>
-        </>
-      )}
-    </section>
-  );
+    useGSAP(() => {
+        const marquee = containerRef.current?.querySelector('.marquee-content');
+        if (!marquee) return;
+
+        let animation;
+
+        const setupAnimation = () => {
+            // Limpiamos animación anterior si existe
+            if (animation) animation.kill();
+
+            // Calculamos el ancho total del contenido
+            const marqueeWidth = marquee.offsetWidth;
+
+            // Animación infinita de derecha a izquierda
+            animation = gsap.to(marquee, {
+                x: -marqueeWidth / 2,
+                duration: 20,
+                ease: "none",
+                repeat: -1,
+            });
+        };
+
+        // Configuramos la animación inicial
+        setupAnimation();
+
+        // Efecto de pausa al hacer hover (solo desktop)
+        const mm = gsap.matchMedia();
+        mm.add("(min-width: 768px)", () => {
+            const handleMouseEnter = () => {
+                gsap.to(marquee, { 
+                    timeScale: 0.3,
+                    duration: 0.5 
+                });
+            };
+
+            const handleMouseLeave = () => {
+                gsap.to(marquee, { 
+                    timeScale: 1,
+                    duration: 0.5 
+                });
+            };
+
+            marquee.addEventListener('mouseenter', handleMouseEnter);
+            marquee.addEventListener('mouseleave', handleMouseLeave);
+
+            return () => {
+                marquee.removeEventListener('mouseenter', handleMouseEnter);
+                marquee.removeEventListener('mouseleave', handleMouseLeave);
+            };
+        });
+
+        // Recalcular en cambios de tamaño (debounced)
+        let resizeTimeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                setupAnimation();
+            }, 250);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            mm.revert();
+            window.removeEventListener('resize', handleResize);
+            if (animation) animation.kill();
+        };
+    }, { scope: containerRef });
+
+    return (
+        <section 
+            ref={containerRef}
+            className="w-full py-16 overflow-hidden bg-gradient-to-r from-transparent via-[#0A0A0A] to-transparent"
+        >
+            <div className="marquee-wrapper">
+                <div className="marquee-content">
+                    {/* Duplicamos el contenido para crear el loop infinito seamless */}
+                    {[...services, ...services].map((service, index) => (
+                        <span key={`${service}-${index}`} className="marquee-item">
+                            {t(`service_summary_${service}`)}
+                            <span className="marquee-separator">|</span>
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
 };
 
-export default memo(ServiceSummary);
+export default ServiceSummary;

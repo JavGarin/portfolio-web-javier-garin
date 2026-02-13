@@ -113,11 +113,11 @@ export const projects = [
     name: "Onigashima Store - Anime Collectibles",
     description:
       "An e-commerce platform for Anime products and accessories with offers and category filtering.",
-    href: "https://github.com/JavGarin/onigashima-store-web",
+    href: "https://onigashima-store.vercel.app/",
     image: "/assets/projects/onigashimastore.avif",
     frameworks: [
       { id: 1, name: "React" },
-      { id: 2, name: "Next.js" },
+      { id: 2, name: "Vite" },
       { id: 3, name: "Tailwind CSS" },
       { id: 4, name: "Supabase" },
     ],
