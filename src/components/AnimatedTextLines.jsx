@@ -5,7 +5,7 @@ import { useRef, useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const AnimatedTextLines = ({ text, className }) => {
+export const AnimatedTextLines = ({ text, className, useScrollTrigger = true }) => {
     const containerRef = useRef(null);
     const lineRefs = useRef([]);
     const lines = text.split("\n").filter((line) => line.trim() !== "");
@@ -14,18 +14,20 @@ export const AnimatedTextLines = ({ text, className }) => {
     useEffect(() => {
         return () => {
             gsap.killTweensOf(lineRefs.current);
-            // Limpiar ScrollTriggers
-            ScrollTrigger.getAll().forEach(trigger => {
-                if (trigger.vars.trigger === containerRef.current) {
-                    trigger.kill();
-                }
-            });
+            // Limpiar ScrollTriggers si se usaron
+            if (useScrollTrigger) {
+                ScrollTrigger.getAll().forEach(trigger => {
+                    if (trigger.vars.trigger === containerRef.current) {
+                        trigger.kill();
+                    }
+                });
+            }
         };
-    }, []);
+    }, [useScrollTrigger]);
 
     useGSAP(() => {
         if (lineRefs.current.length > 0) {
-            gsap.from(lineRefs.current, {
+            const animationProps = {
                 y: 80,
                 opacity: 0,
                 duration: 1.2,
@@ -34,29 +36,34 @@ export const AnimatedTextLines = ({ text, className }) => {
                     from: "start",
                 },
                 ease: "power3.out",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 85%",
-                    end: "bottom 15%",
-                    toggleActions: "play none none reverse",
-                    // Optimización: no recalcular constantemente
-                    once: false,
-                },
                 onStart: () => {
-                    // Optimización de rendimiento
                     lineRefs.current.forEach(line => {
                         if (line) line.style.willChange = 'transform, opacity';
                     });
                 },
                 onComplete: () => {
-                    // Limpiar will-change después de la animación
                     lineRefs.current.forEach(line => {
                         if (line) line.style.willChange = 'auto';
                     });
                 }
-            });
+            };
+
+            if (useScrollTrigger) {
+                gsap.from(lineRefs.current, {
+                    ...animationProps,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play none none reverse",
+                        once: false,
+                    }
+                });
+            }
+            // Eliminado el bloque else con gsap.set para evitar que el texto se oculte 
+            // antes de que el padre pueda animarlo.
         }
-    }, [lines.length]);
+    }, [lines.length, useScrollTrigger]);
 
     return (
         <div ref={containerRef} className={className}>

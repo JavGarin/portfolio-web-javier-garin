@@ -17,6 +17,17 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
@@ -104,9 +115,9 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-between w-full px-10 uppercase py-16 gap-y-8 md:w-1/2 md:left-1/2 h-auto rounded-b-3xl backdrop-blur-xl bg-primary-bg/80 [.dark-section-active_&]:bg-black/70"
+        className="fixed z-50 flex flex-col justify-between w-full px-6 py-8 uppercase gap-y-6 md:px-10 md:py-16 md:gap-y-8 md:w-1/2 md:left-1/2 h-auto rounded-b-3xl backdrop-blur-xl bg-primary-bg/80 [.dark-section-active_&]:bg-black/70"
       >
-        <div className="flex flex-col text-4xl gap-y-2 md:text-5xl lg:text-7xl text-primary-text/80">
+        <div className="flex flex-col text-2xl gap-y-1.5 sm:text-3xl md:text-5xl md:gap-y-2 lg:text-7xl text-primary-text/80">
           {["home", "services", "about", "work", "contact"].map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
@@ -127,18 +138,18 @@ const Navbar = () => {
         </div>
         <div
           ref={contactRef}
-          className="flex flex-col flex-wrap justify-between gap-8 md:flex-row"
+          className="flex flex-col flex-wrap justify-between gap-4 sm:gap-6 md:gap-8 md:flex-row"
         >
           <div className="font-light">
-            <p className="tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_email')}</p>
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_email')}</p>
             <div onClick={handleCopy} className="cursor-pointer">
-              <p className="text-xl tracking-widest lowercase text-pretty text-primary-text [.dark-section-active_&]:text-white">
+              <p className="text-sm sm:text-base md:text-xl tracking-widest lowercase text-pretty text-primary-text [.dark-section-active_&]:text-white">
                 {copied ? t('nav_copied') : email}
               </p>
             </div>
           </div>
           <div className="font-light">
-            <p className="tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_social_media')}</p>
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_social_media')}</p>
             <div className="flex flex-col flex-wrap md:flex-row gap-x-2">
               {socials.map((social, index) => (
                 <a
@@ -146,7 +157,7 @@ const Navbar = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm leading-loose tracking-widest uppercase transition-colors duration-300 text-primary-text hover:text-accent [.dark-section-active_&]:text-white"
+                  className="text-xs sm:text-sm leading-loose tracking-widest uppercase transition-colors duration-300 text-primary-text hover:text-accent [.dark-section-active_&]:text-white"
                 >
                   {" { "}
                   {social.name}
@@ -156,8 +167,8 @@ const Navbar = () => {
             </div>
           </div>
           <div className="font-light">
-            <p className="tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_language')}</p>
-            <div className="flex gap-x-4 text-xl tracking-widest uppercase text-primary-text [.dark-section-active_&]:text-white">
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_language')}</p>
+            <div className="flex gap-x-3 sm:gap-x-4 text-base sm:text-lg md:text-xl tracking-widest uppercase text-primary-text [.dark-section-active_&]:text-white">
               <button
                 onClick={() => i18n.changeLanguage('en')}
                 className={`transition-colors duration-200 cursor-pointer ${i18n.language === 'en' ? 'text-accent' : 'hover:text-accent/80'}`}
@@ -173,21 +184,37 @@ const Navbar = () => {
               </button>
             </div>
           </div>
+          <div className="font-light">
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_theme')}</p>
+            <div className="flex gap-x-3 sm:gap-x-4 text-base sm:text-lg md:text-xl tracking-widest uppercase text-primary-text [.dark-section-active_&]:text-white">
+              <button
+                onClick={toggleTheme}
+                className="transition-colors duration-200 cursor-pointer hover:text-accent"
+              >
+                {theme === "dark" ? t('theme_light') : t('theme_dark')}
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
       <div
-        className={`fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 bg-primary-bg [.dark-section-active_&]:bg-neutral-800 rounded-full cursor-pointer w-14 h-14 md:w-20 md:h-20 top-4 right-10 ${
-          isScrolled ? "opacity-50" : "opacity-100"
-        }`}
+        className="fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 rounded-full cursor-pointer w-14 h-14 md:w-20 md:h-20 top-4 right-10 border-2"
+        style={{
+          backgroundColor: 'var(--menu-button-bg)',
+          borderColor: 'var(--border-color)',
+          opacity: isScrolled ? 0.5 : 1
+        }}
         onClick={toggleMenu}
       >
         <span
           ref={topLineRef}
-          className="block w-8 h-0.5 bg-black rounded-full origin-center transition-all [.dark-section-active_&]:bg-white [.dark-section-active_&]:[filter:drop-shadow(0_0_2px_rgba(255,255,255,0.7))]"
+          className="block w-8 h-0.5 rounded-full origin-center transition-all"
+          style={{ backgroundColor: 'var(--menu-button-line)' }}
         ></span>
         <span
           ref={bottomLineRef}
-          className="block w-8 h-0.5 bg-black rounded-full origin-center transition-all [.dark-section-active_&]:bg-white [.dark-section-active_&]:[filter:drop-shadow(0_0_2px_rgba(255,255,255,0.7))]"
+          className="block w-8 h-0.5 rounded-full origin-center transition-all"
+          style={{ backgroundColor: 'var(--menu-button-line)' }}
         ></span>
       </div>
     </> 

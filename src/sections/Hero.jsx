@@ -64,7 +64,7 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex flex-col justify-center bg-black px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center bg-primary-bg px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
       {/* Video de fondo - Más visible */}
       <video
@@ -82,7 +82,7 @@ const Hero = () => {
 
       {/* Overlay sutil solo para contraste del texto, sin oscurecer todo el video */}
       <div 
-        className="absolute inset-0 bg-black/30" // Overlay muy suave (30%)
+        className="absolute inset-0 bg-primary-bg/30" // Overlay adaptivo
         aria-hidden="true"
       />
 
@@ -92,37 +92,37 @@ const Hero = () => {
         className="relative z-10 max-w-7xl mx-auto w-full" // Eliminado backdrop-blur, bg-black y border
       >
         {/* Subtítulo */}
-        <p
-          ref={subtitleRef}
-          className="text-white/80 text-sm sm:text-base font-light tracking-[0.3em] uppercase mb-6 sm:mb-8 drop-shadow-md"
-        >
-          {t('hero_subtitle')}
-        </p>
-
-        {/* Nombre principal - Separado en dos líneas */}
-        <div className="overflow-hidden">
-          <h1 className="flex flex-col leading-none">
-            <span
-              ref={firstNameRef}
-              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase drop-shadow-2xl"
-            >
-              Javier
-            </span>
-            <span
-              ref={lastNameRef}
-              className="text-white font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase -mt-2 sm:-mt-4 lg:-mt-8 drop-shadow-2xl"
-            >
-              Garín
-            </span>
-          </h1>
-        </div>
-
-        {/* Descripción */}
-        <div ref={descriptionRef} className="mt-8 sm:mt-12 max-w-xl ml-auto text-right">
-          <p className="text-white font-light text-sm sm:text-base uppercase tracking-wide leading-relaxed drop-shadow-lg">
-            {t('hero_text')}
+          <p
+            ref={subtitleRef}
+            className="text-primary-text/80 text-sm sm:text-base font-light tracking-[0.3em] uppercase mb-6 sm:mb-8 drop-shadow-md"
+          >
+            {t('hero_subtitle')}
           </p>
-        </div>
+
+          {/* Nombre principal - Separado en dos líneas */}
+          <div className="overflow-hidden">
+            <h1 className="flex flex-col leading-none">
+              <span
+                ref={firstNameRef}
+                className="text-primary-text font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase drop-shadow-2xl"
+              >
+                Javier
+              </span>
+              <span
+                ref={lastNameRef}
+                className="text-primary-text font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase -mt-2 sm:-mt-4 lg:-mt-8 drop-shadow-2xl"
+              >
+                Garín
+              </span>
+            </h1>
+          </div>
+
+          {/* Descripción */}
+          <div ref={descriptionRef} className="mt-8 sm:mt-12 max-w-xl ml-auto text-right">
+            <p className="text-primary-text font-light text-sm sm:text-base uppercase tracking-wide leading-relaxed drop-shadow-lg">
+              {t('hero_text')}
+            </p>
+          </div>
       </div>
     </section>
   );

@@ -89,15 +89,17 @@ const ServiceSummary = () => {
     return (
         <section 
             ref={containerRef}
-            className="w-full py-16 overflow-hidden bg-gradient-to-r from-transparent via-[#0A0A0A] to-transparent"
+            className="w-full py-16 overflow-hidden"
+            style={{ background: `linear-gradient(90deg, transparent 0%, var(--primary-bg) 50%, transparent 100%)` }}
         >
             <div className="marquee-wrapper">
                 <div className="marquee-content">
                     {/* Duplicamos el contenido para crear el loop infinito seamless */}
                     {[...services, ...services].map((service, index) => (
                         <span key={`${service}-${index}`} className="marquee-item">
+                            <span className="marquee-bracket">{"{ "}</span>
                             {t(`service_summary_${service}`)}
-                            <span className="marquee-separator">|</span>
+                            <span className="marquee-bracket">{" }"}</span>
                         </span>
                     ))}
                 </div>

@@ -3,6 +3,9 @@ import { useRef, useEffect } from "react";
 import { AnimatedTextLines } from "../components/AnimatedTextLines";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedHeaderSection = ({
     subTitle,
@@ -17,6 +20,7 @@ const AnimatedHeaderSection = ({
     const subtitleRef = useRef(null);
     const titleRef = useRef(null);
     const wordsRef = useRef([]);
+    const textRef = useRef(null);
     
     const shouldSplitTitle = title.includes(" ");
     const titleParts = shouldSplitTitle ? title.split(" ") : [title];
@@ -24,7 +28,10 @@ const AnimatedHeaderSection = ({
     // Cleanup on unmount para evitar memory leaks
     useEffect(() => {
         return () => {
-            gsap.killTweensOf([contentRef.current, headerRef.current, subtitleRef.current, titleRef.current, wordsRef.current]);
+            gsap.killTweensOf([contentRef.current, headerRef.current, subtitleRef.current, titleRef.current, wordsRef.current, textRef.current]);
+            ScrollTrigger.getAll().forEach(t => {
+                if (t.vars.trigger === triggerRef.current) t.kill();
+            });
         };
     }, []);
 
@@ -34,77 +41,84 @@ const AnimatedHeaderSection = ({
             scrollTrigger: withScrollTrigger
                 ? {
                     trigger: triggerRef.current,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
+                    start: "top 85%", // Un poco más tarde para asegurar visibilidad
+                    end: "bottom 15%",
+                    toggleActions: "play pause resume reverse", // Comportamiento más fluido
                 }
                 : undefined,
             defaults: {
-                ease: "power3.out", // Ease más suave y performante
+                ease: "power3.out",
+                duration: 1,
             }
         });
 
-        // Animación del contenedor principal (ahora animamos el contenido interno, no el trigger)
+        // Animación de entrada suave del contenido
         tl.from(contentRef.current, {
-            y: "50vh",
+            opacity: 0,
+            y: 50,
             duration: 1.2,
-            ease: "circ.out",
         });
 
-        // Animación del subtítulo con fade y slide
+        // Subtítulo
         tl.from(
             subtitleRef.current,
             {
                 opacity: 0,
-                y: 30,
+                y: 20,
                 duration: 0.8,
-                ease: "power2.out",
             },
-            "<+0.3"
+            "-=0.8"
         );
 
-        // Animación escalonada de las palabras del título
+        // Título (palabras)
         if (wordsRef.current.length > 0) {
             tl.from(
                 wordsRef.current,
                 {
                     opacity: 0,
-                    y: 100,
-                    rotationX: -90,
-                    transformOrigin: "50% 50% -50px",
-                    stagger: {
-                        amount: 0.5,
-                        from: "start",
-                    },
+                    y: 40,
+                    rotationX: -15,
+                    stagger: 0.1,
                     duration: 1,
-                    ease: "back.out(1.2)",
                     onStart: () => {
-                        // Optimización de rendimiento
                         wordsRef.current.forEach(word => {
                             if (word) word.style.willChange = 'transform, opacity';
                         });
                     },
                     onComplete: () => {
-                        // Limpiar will-change después de la animación
                         wordsRef.current.forEach(word => {
                             if (word) word.style.willChange = 'auto';
                         });
                     }
                 },
-                "<+0.2"
+                "-=0.6"
             );
         }
 
-        // Animación del header general
-        tl.from(
-            headerRef.current,
-            {
-                opacity: 0,
-                y: 50,
-                duration: 0.8,
-            },
-            "<+0.1"
-        );
+        // Animación de las líneas de texto integradas (sin su propio ScrollTrigger)
+        const lines = textRef.current?.querySelectorAll('span');
+        if (lines && lines.length > 0) {
+            tl.from(
+                lines,
+                {
+                    y: 30,
+                    opacity: 0,
+                    stagger: 0.1,
+                    duration: 0.8,
+                    onStart: () => {
+                        lines.forEach(line => {
+                            if (line) line.style.willChange = 'transform, opacity';
+                        });
+                    },
+                    onComplete: () => {
+                        lines.forEach(line => {
+                            if (line) line.style.willChange = 'auto';
+                        });
+                    }
+                },
+                "-=0.5"
+            );
+        }
 
     }, [withScrollTrigger, titleParts.length]);
 
@@ -145,9 +159,10 @@ const AnimatedHeaderSection = ({
                     </div>
                 </div>
                 <div className={`relative px-10 ${textColor}`}>
-                    <div className="py-12 sm:py-16 text-end">
+                    <div ref={textRef} className="py-12 sm:py-16 text-end">
                         <AnimatedTextLines
                             text={text}
+                            useScrollTrigger={false}
                             className={`font-light uppercase value-text-responsive ${textColor}`}
                         />
                     </div>

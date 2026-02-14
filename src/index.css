@@ -28,9 +28,15 @@
   --color-accent: #505050;         /* Gris neutro para acentos */
   --color-accent-light: #909090;   /* Gris claro para hover */
 
-  /* Colores base para el tema */
+  /* Colores base por defecto (Dark) */
   --primary-bg: var(--color-darkest);
   --primary-text: var(--color-lightest);
+  --secondary-bg: var(--color-darker);
+  --secondary-text: var(--color-medium-light);
+  --card-bg: var(--color-darker);
+  --border-color: var(--color-medium-dark);
+  --menu-button-bg: var(--color-darkest);
+  --menu-button-line: var(--color-lightest);
 
   /* Tipografías */
   --font-headings: "BBH Sans Bogle", sans-serif;
@@ -38,6 +44,19 @@
 
   /* Animaciones */
   --animate-marquee: marquee 40s infinite linear;
+}
+
+[data-theme='light'] {
+  --primary-bg: var(--color-lightest);
+  --primary-text: var(--color-darkest);
+  --secondary-bg: var(--color-lighter);
+  --secondary-text: #505050; /* Más oscuro para mejor contraste */
+  --card-bg: var(--color-white);
+  --border-color: #B0B0B0; /* Más visible */
+  --color-accent: #606060; /* Acento más fuerte */
+  --color-accent-light: #2A2A2A; /* Hover más oscuro */
+  --menu-button-bg: var(--color-white);
+  --menu-button-line: var(--color-darkest);
 }
 
 /* Animación de marquesina */
@@ -70,11 +89,11 @@ body {
 
 /* Clases de utilidad para colores personalizados */
 .bg-primary-bg {
-  background-color: var(--color-darkest);
+  background-color: var(--primary-bg);
 }
 
 .bg-secondary-bg {
-  background-color: var(--color-lighter);
+  background-color: var(--secondary-bg);
 }
 
 .bg-dark {
@@ -90,11 +109,11 @@ body {
 }
 
 .text-primary-text {
-  color: var(--color-lightest);
+  color: var(--primary-text);
 }
 
 .text-secondary-text {
-  color: var(--color-medium-light);
+  color: var(--secondary-text);
 }
 
 .text-dark {
@@ -122,7 +141,7 @@ body {
 }
 
 .border-light {
-  border-color: var(--color-light);
+  border-color: var(--border-color);
 }
 
 .border-medium {
@@ -130,7 +149,7 @@ body {
 }
 
 .border-secondary-text {
-  border-color: var(--color-medium-light);
+  border-color: var(--secondary-text);
 }
 
 .stroke-accent {
@@ -147,12 +166,13 @@ body {
 
 [class*="dark-section-active"] .bg-neutral-800,
 .\[\.dark-section-active_\&\]\:bg-neutral-800 {
-  background-color: rgb(38 38 38);
+  background-color: var(--secondary-bg);
 }
 
 [class*="dark-section-active"] .bg-black\/70,
 .\[\.dark-section-active_\&\]\:bg-black\/70 {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--primary-bg);
+  opacity: 0.7;
 }
 
 
@@ -194,17 +214,19 @@ body {
   align-items: center;
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 300;
-  color: var(--color-lightest);
+  color: var(--primary-text);
   white-space: nowrap;
   padding: 0 4rem;
   letter-spacing: 0.05em;
 }
 
-.marquee-separator {
-  margin: 0 2rem;
-  font-size: 0.8em;
-  opacity: 0.3;
-  font-weight: 100;
+.marquee-bracket {
+  margin: 0 1rem;
+  font-size: 0.9em;
+  opacity: 0.5;
+  font-weight: 400;
+  font-family: 'Courier New', monospace;
+  color: var(--color-accent-light);
 }
 
 /* Responsive adjustments */
@@ -214,8 +236,9 @@ body {
     padding: 0 1rem;
   }
   
-  .marquee-separator {
-    margin: 0 1rem;
+  .marquee-bracket {
+    margin: 0 0.5rem;
+    font-size: 0.85em;
   }
 }
 
@@ -223,31 +246,31 @@ body {
 .service-pill {
   position: relative;
   padding: 0.75rem 1.75rem;
-  background: var(--color-darker);
+  background: var(--secondary-bg);
   border-radius: 9999px;
-  border: 1px solid var(--color-medium-dark);
+  border: 1px solid var(--border-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
 .service-pill:hover {
-  background: var(--color-dark);
+  background: var(--card-bg);
   border-color: var(--color-accent-light);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(160, 160, 160, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .pill-text {
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 400;
-  color: var(--color-lightest);
+  color: var(--primary-text);
   letter-spacing: 0.02em;
   white-space: nowrap;
   transition: color 0.3s ease;
 }
 
 .service-pill:hover .pill-text {
-  color: var(--color-white);
+  color: var(--color-accent-light);
 }
 
 /* Responsive adjustments */
