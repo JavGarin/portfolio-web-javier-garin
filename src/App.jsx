@@ -1,5 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import Navbar from "./sections/Navbar";
+import ThemeLanguageControls from "./components/ThemeLanguageControls";
+import { ThemeProvider } from "./context/ThemeContext";
 import Hero from "./sections/Hero";
 import ReactLenis from "lenis/react";
 import { useMediaQuery } from "react-responsive";
@@ -27,6 +29,7 @@ const App = () => {
 
   const content = (
     <>
+      <ThemeLanguageControls />
       <Navbar />
       <Hero />
       <Suspense fallback={<SectionFallback />}>
@@ -42,11 +45,11 @@ const App = () => {
 
   return isDesktop ? (
     <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
-      {content}
+      <ThemeProvider>{content}</ThemeProvider>
     </ReactLenis>
   ) : (
     <div className="relative w-screen min-h-screen overflow-x-auto">
-      {content}
+      <ThemeProvider>{content}</ThemeProvider>
     </div>
   );
 };

@@ -12,31 +12,46 @@
 
 /* Definición de variables globales y fuentes */
 :root {
-  /* Paleta Monocromática Moderna - Escala de Grises */
-  --color-darkest: #0A0A0A;        /* Negro profundo */
-  --color-darker: #1A1A1A;         /* Gris muy oscuro */
-  --color-dark: #2A2A2A;           /* Gris oscuro */
-  --color-medium-dark: #404040;    /* Gris medio oscuro */
-  --color-medium: #707070;         /* Gris medio */
-  --color-medium-light: #A0A0A0;   /* Gris medio claro */
-  --color-light: #D0D0D0;          /* Gris claro */
-  --color-lighter: #E8E8E8;        /* Gris muy claro */
-  --color-lightest: #F5F5F5;       /* Casi blanco */
-  --color-white: #FFFFFF;          /* Blanco puro */
-  
-  /* Acento sutil (opcional para hover/focus) */
-  --color-accent: #505050;         /* Gris neutro para acentos */
-  --color-accent-light: #909090;   /* Gris claro para hover */
+  /* Paleta Slate/Indigo — Dark por defecto */
+  color-scheme: dark;
 
-  /* Colores base por defecto (Dark) */
+  /* Escala de colores base */
+  --color-darkest: #09090F;        /* Negro azulado profundo */
+  --color-darker: #111118;         /* Fondo secundario dark */
+  --color-dark: #1C1C28;           /* Superficie elevada dark */
+  --color-medium-dark: #27272F;    /* Borde dark */
+  --color-medium: #52526B;         /* Texto deshabilitado dark */
+  --color-medium-light: #8B8B9E;   /* Texto secundario dark */
+  --color-light: #C4C4D4;          /* Borde light */
+  --color-lighter: #E8E8F0;        /* Fondo secundario light */
+  --color-lightest: #EEEEF2;       /* Texto principal dark */
+  --color-white: #FAFAFE;          /* Fondo primario light */
+
+  /* Acento Indigo */
+  --color-accent: #6366F1;         /* Indigo-500 */
+  --color-accent-light: #818CF8;   /* Indigo-400 (hover dark) */
+
+  /* Tokens semánticos — Dark mode (default) */
   --primary-bg: var(--color-darkest);
   --primary-text: var(--color-lightest);
   --secondary-bg: var(--color-darker);
   --secondary-text: var(--color-medium-light);
-  --card-bg: var(--color-darker);
+  --card-bg: var(--color-dark);
   --border-color: var(--color-medium-dark);
-  --menu-button-bg: var(--color-darkest);
+  --menu-button-bg: var(--color-darker);
   --menu-button-line: var(--color-lightest);
+
+  /* Hero overlay — Oscuro sutil para que el video brille */
+  --hero-overlay: rgba(9, 9, 15, 0.45);
+  /* Hero gradient lateral — cubre texto en esquina izquierda */
+  --hero-gradient: linear-gradient(100deg, rgba(9,9,15,0.75) 0%, rgba(9,9,15,0.35) 50%, transparent 100%);
+
+  /* Services section — siempre oscuro en dark mode */
+  --services-bg: var(--color-darkest);
+  --services-text: var(--color-lightest);
+  --services-text-muted: rgba(238, 238, 242, 0.65);
+  --services-border: rgba(238, 238, 242, 0.12);
+  --services-number: var(--color-accent-light);
 
   /* Tipografías */
   --font-headings: "BBH Sans Bogle", sans-serif;
@@ -47,16 +62,29 @@
 }
 
 [data-theme='light'] {
-  --primary-bg: var(--color-lightest);
-  --primary-text: var(--color-darkest);
+  color-scheme: light;
+
+  --primary-bg: var(--color-white);
+  --primary-text: #0D0D1A;         /* Negro con tinte azul-slate */
   --secondary-bg: var(--color-lighter);
-  --secondary-text: #505050; /* Más oscuro para mejor contraste */
-  --card-bg: var(--color-white);
-  --border-color: #B0B0B0; /* Más visible */
-  --color-accent: #606060; /* Acento más fuerte */
-  --color-accent-light: #2A2A2A; /* Hover más oscuro */
-  --menu-button-bg: var(--color-white);
-  --menu-button-line: var(--color-darkest);
+  --secondary-text: #4B4B6B;       /* Slate medio */
+  --card-bg: #FFFFFF;
+  --border-color: var(--color-light);
+  --color-accent: #4F46E5;         /* Indigo-600 (más oscuro para contraste en fondo claro) */
+  --color-accent-light: #4338CA;   /* Indigo-700 hover */
+  --menu-button-bg: #FFFFFF;
+  --menu-button-line: #0D0D1A;
+
+  /* Hero overlay light — gradiente oscuro en borde izquierdo para legibilidad del texto */
+  --hero-overlay: rgba(250, 250, 254, 0.15);
+  --hero-gradient: linear-gradient(100deg, rgba(13,13,26,0.6) 0%, rgba(13,13,26,0.25) 50%, transparent 100%);
+
+  /* Services section — claro en light mode */
+  --services-bg: var(--color-white);
+  --services-text: #0D0D1A;
+  --services-text-muted: rgba(13, 13, 26, 0.6);
+  --services-border: rgba(13, 13, 26, 0.15);
+  --services-number: var(--color-accent);
 }
 
 /* Animación de marquesina */

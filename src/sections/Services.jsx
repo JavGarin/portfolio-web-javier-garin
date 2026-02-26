@@ -42,7 +42,11 @@ const Services = () => {
     });
   }, []);
   return (
-    <section id="services" className="min-h-screen bg-black rounded-t-4xl">
+    <section
+      id="services"
+      className="min-h-screen rounded-t-4xl"
+      style={{ backgroundColor: "var(--services-bg)", color: "var(--services-text)" }}
+    >
       <AnimatedHeaderSection
         subTitle={t('services_subtitle')}
         title={t('services_title')}
@@ -54,33 +58,49 @@ const Services = () => {
         <div
           ref={(el) => (serviceRefs.current[index] = el)}
           key={index}
-          className="sticky px-10 pt-6 pb-12 text-white bg-black border-t-2 border-white/80"
-          style={
-            isDesktop
+          className="sticky px-10 pt-6 pb-12"
+          style={{
+            backgroundColor: "var(--services-bg)",
+            borderTop: "2px solid var(--services-border)",
+            ...(isDesktop
               ? {
                   top: `calc(10vh + ${index * 5}em)`,
                   marginBottom: `${(servicesData.length - index - 1) * 5}rem`,
                 }
-              : { top: 0 }
-          }
+              : { top: 0 }),
+          }}
         >
           <div className="flex items-center justify-between gap-4 font-light">
             <div className="flex flex-col gap-6">
-              <h2 className="text-4xl lg:text-5xl">{t(`service_${index + 1}_title`)}</h2>
-              <p className="text-xl leading-relaxed tracking-widest lg:text-2xl text-white/80 text-pretty">
+              <h2 className="text-4xl lg:text-5xl">
+                {t(`service_${index + 1}_title`)}
+              </h2>
+              <p
+                className="text-xl leading-relaxed tracking-widest lg:text-2xl text-pretty"
+                style={{ color: "var(--services-text-muted)" }}
+              >
                 {t(`service_${index + 1}_desc`)}
               </p>
-              <div className="flex flex-col gap-2 text-2xl sm:gap-4 lg:text-3xl text-white/80">
+              <div
+                className="flex flex-col gap-2 text-2xl sm:gap-4 lg:text-3xl"
+                style={{ color: "var(--services-text-muted)" }}
+              >
                 {service.items.map((item, itemIndex) => (
                   <div key={`item-${index}-${itemIndex}`}>
                     <h3 className="flex">
-                      <span className="mr-12 text-lg text-white/80">
+                      <span
+                        className="mr-12 text-lg"
+                        style={{ color: "var(--services-number)" }}
+                      >
                         0{itemIndex + 1}
                       </span>
                       {t(`service_${index + 1}_item_${itemIndex + 1}_title`)}
                     </h3>
                     {itemIndex < service.items.length - 1 && (
-                      <div className="w-full h-px my-2 bg-white/80" />
+                      <div
+                        className="w-full h-px my-2"
+                        style={{ backgroundColor: "var(--services-border)" }}
+                      />
                     )}
                   </div>
                 ))}

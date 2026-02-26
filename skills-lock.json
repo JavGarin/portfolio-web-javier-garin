@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "dark-mode-implementer": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "computedHash": "126d5d919933ff8703e7070e5bda13345ca028f5677996f2d32bc620d1c6f0cf"
+    },
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "computedHash": "46a55d68886d6c104bde7803c55a479f91b45ae01441e37c800373bcb0bf3719"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d8e7d3afe37dcc8a97b99ffb5afdb4d0919ae0092ea8b68f44eb201f035e33ac"
+    }
+  }
+}

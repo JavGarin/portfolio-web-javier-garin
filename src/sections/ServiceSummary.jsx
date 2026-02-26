@@ -46,14 +46,15 @@ const ServiceSummary = () => {
         const mm = gsap.matchMedia();
         mm.add("(min-width: 768px)", () => {
             const handleMouseEnter = () => {
-                gsap.to(marquee, { 
+                // timeScale must be set on the animation instance, not the DOM element
+                gsap.to(animation, { 
                     timeScale: 0.3,
                     duration: 0.5 
                 });
             };
 
             const handleMouseLeave = () => {
-                gsap.to(marquee, { 
+                gsap.to(animation, { 
                     timeScale: 1,
                     duration: 0.5 
                 });

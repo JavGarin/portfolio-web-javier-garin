@@ -17,17 +17,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
@@ -115,14 +105,18 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-between w-full px-6 py-8 uppercase gap-y-6 md:px-10 md:py-16 md:gap-y-8 md:w-1/2 md:left-1/2 h-auto rounded-b-3xl backdrop-blur-xl bg-primary-bg/80 [.dark-section-active_&]:bg-black/70"
+        className="fixed z-50 flex flex-col justify-between w-full px-6 py-8 uppercase gap-y-6 md:px-10 md:py-16 md:gap-y-8 md:w-1/2 md:left-1/2 h-auto rounded-b-3xl backdrop-blur-xl transition-colors duration-300"
+        style={{
+          backgroundColor: "var(--primary-bg)",
+          /* Opacity via RGB alpha overlay handled natively or via tailwind bg-opacity */
+        }}
       >
-        <div className="flex flex-col text-2xl gap-y-1.5 sm:text-3xl md:text-5xl md:gap-y-2 lg:text-7xl text-primary-text/80">
+        <div className="flex flex-col text-2xl gap-y-1.5 sm:text-3xl md:text-5xl md:gap-y-2 lg:text-7xl">
           {["home", "services", "about", "work", "contact"].map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
                 <Link
-                  className="transition-all duration-300 cursor-pointer hover:text-accent [.dark-section-active_&]:text-white [.dark-section-active_&]:[text-shadow:0_0_5px_rgba(255,255,255,0.5)]"
+                  className="transition-all duration-300 cursor-pointer text-primary-text/80 hover:text-accent [.dark-section-active_&]:text-primary-text [.dark-section-active_&]:drop-shadow-sm"
                   to={`${section}`}
                   href={`#${section}`}
                   smooth
@@ -141,15 +135,15 @@ const Navbar = () => {
           className="flex flex-col flex-wrap justify-between gap-4 sm:gap-6 md:gap-8 md:flex-row"
         >
           <div className="font-light">
-            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_email')}</p>
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50">{t('nav_email')}</p>
             <div onClick={handleCopy} className="cursor-pointer">
-              <p className="text-sm sm:text-base md:text-xl tracking-widest lowercase text-pretty text-primary-text [.dark-section-active_&]:text-white">
+              <p className="text-sm sm:text-base md:text-xl tracking-widest lowercase text-pretty text-primary-text hover:text-accent transition-colors">
                 {copied ? t('nav_copied') : email}
               </p>
             </div>
           </div>
           <div className="font-light">
-            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_social_media')}</p>
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50">{t('nav_social_media')}</p>
             <div className="flex flex-col flex-wrap md:flex-row gap-x-2">
               {socials.map((social, index) => (
                 <a
@@ -157,42 +151,13 @@ const Navbar = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm leading-loose tracking-widest uppercase transition-colors duration-300 text-primary-text hover:text-accent [.dark-section-active_&]:text-white"
+                  className="text-xs sm:text-sm leading-loose tracking-widest uppercase transition-colors duration-300 text-primary-text hover:text-accent"
                 >
                   {" { "}
                   {social.name}
                   {" }"}
                 </a>
               ))}
-            </div>
-          </div>
-          <div className="font-light">
-            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_language')}</p>
-            <div className="flex gap-x-3 sm:gap-x-4 text-base sm:text-lg md:text-xl tracking-widest uppercase text-primary-text [.dark-section-active_&]:text-white">
-              <button
-                onClick={() => i18n.changeLanguage('en')}
-                className={`transition-colors duration-200 cursor-pointer ${i18n.language === 'en' ? 'text-accent' : 'hover:text-accent/80'}`}
-              >
-                EN
-              </button>
-              <span>/</span>
-              <button
-                onClick={() => i18n.changeLanguage('es')}
-                className={`transition-colors duration-200 cursor-pointer ${i18n.language === 'es' ? 'text-accent' : 'hover:text-accent/80'}`}
-              >
-                ES
-              </button>
-            </div>
-          </div>
-          <div className="font-light">
-            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50 [.dark-section-active_&]:text-white/60">{t('nav_theme')}</p>
-            <div className="flex gap-x-3 sm:gap-x-4 text-base sm:text-lg md:text-xl tracking-widest uppercase text-primary-text [.dark-section-active_&]:text-white">
-              <button
-                onClick={toggleTheme}
-                className="transition-colors duration-200 cursor-pointer hover:text-accent"
-              >
-                {theme === "dark" ? t('theme_light') : t('theme_dark')}
-              </button>
             </div>
           </div>
         </div>

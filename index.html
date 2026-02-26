@@ -86,6 +86,17 @@
   </head>
   
   <body>
+    <!-- Anti-flash: apply theme before React hydrates to prevent FOUC -->
+    <script>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || 'system';
+        var resolved = theme === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : theme;
+        document.documentElement.setAttribute('data-theme', resolved);
+      })();
+    </script>
     <div id="root"></div>
     
     <!-- Scripts con atributos de performance -->
