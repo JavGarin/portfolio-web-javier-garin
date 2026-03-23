@@ -37,13 +37,13 @@ const ThemeLanguageControls = () => {
 
   return (
     <div
-      className="fixed top-6 left-6 md:left-10 z-[60] flex items-center"
+      className="fixed top-4 left-4 md:left-6 z-[60] flex items-center"
       style={{ gap: "0" }}
     >
       {/* Theme toggle — square brutalist button */}
       <button
         onClick={toggleTheme}
-        className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-xs font-bold uppercase tracking-widest transition-colors duration-150"
+        className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 text-[10px] md:text-xs font-bold uppercase tracking-widest transition-colors duration-150"
         style={{
           border: borderStyle,
           ...(isDark ? inactiveStyle : activeStyle),
@@ -51,12 +51,12 @@ const ThemeLanguageControls = () => {
         aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
         title={isDark ? "Light mode" : "Dark mode"}
       >
-        {isDark ? "○" : "●"}
+        {isDark ? "☾" : "☀"}
       </button>
 
       {/* Divider — part of the brutalist grid */}
       <div
-        className="w-px h-10 md:h-11"
+        className="w-px h-8 md:h-9"
         style={{ backgroundColor: "var(--primary-text)" }}
         aria-hidden="true"
       />
@@ -64,7 +64,7 @@ const ThemeLanguageControls = () => {
       {/* Language EN — square button */}
       <button
         onClick={() => i18n.changeLanguage("en")}
-        className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-xs font-bold uppercase tracking-widest transition-colors duration-150"
+        className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 text-[10px] md:text-xs font-bold uppercase tracking-widest transition-colors duration-150"
         style={{
           border: borderStyle,
           borderLeft: "none",
@@ -79,7 +79,7 @@ const ThemeLanguageControls = () => {
       {/* Language ES — square button */}
       <button
         onClick={() => i18n.changeLanguage("es")}
-        className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-xs font-bold uppercase tracking-widest transition-colors duration-150"
+        className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 text-[10px] md:text-xs font-bold uppercase tracking-widest transition-colors duration-150"
         style={{
           border: borderStyle,
           borderLeft: "none",

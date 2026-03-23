@@ -132,7 +132,7 @@ const Hero = () => {
         <p
           ref={subtitleRef}
           className="text-sm sm:text-base font-light tracking-[0.3em] uppercase mb-4 sm:mb-6 drop-shadow-md"
-          style={{ color: "var(--color-accent-light)" }}
+          style={{ color: "var(--always-light-accent)" }}
         >
           {t("hero_subtitle")}
         </p>
@@ -143,14 +143,14 @@ const Hero = () => {
             <span
               ref={firstNameRef}
               className="font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase drop-shadow-2xl"
-              style={{ color: "#EEEEF2" }}
+              style={{ color: "var(--always-light-text)" }}
             >
               Javier
             </span>
             <span
               ref={lastNameRef}
               className="font-bold text-6xl sm:text-8xl lg:text-[10rem] xl:text-[12rem] tracking-tight uppercase -mt-2 sm:-mt-4 lg:-mt-8 drop-shadow-2xl"
-              style={{ color: "#EEEEF2" }}
+              style={{ color: "var(--always-light-text)" }}
             >
               Garín
             </span>
@@ -164,7 +164,7 @@ const Hero = () => {
         >
           <p
             className="font-light text-sm sm:text-base uppercase tracking-wide leading-relaxed drop-shadow-lg"
-            style={{ color: "rgba(238,238,242,0.85)" }}
+            style={{ color: "var(--always-light-text-muted)" }}
           >
             {t("hero_text")}
           </p>

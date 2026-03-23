@@ -135,7 +135,7 @@ const Navbar = () => {
           className="flex flex-col flex-wrap justify-between gap-4 sm:gap-6 md:gap-8 md:flex-row"
         >
           <div className="font-light">
-            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50">{t('nav_email')}</p>
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/80">{t('nav_email')}</p>
             <div onClick={handleCopy} className="cursor-pointer">
               <p className="text-sm sm:text-base md:text-xl tracking-widest lowercase text-pretty text-primary-text hover:text-accent transition-colors">
                 {copied ? t('nav_copied') : email}
@@ -143,7 +143,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="font-light">
-            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/50">{t('nav_social_media')}</p>
+            <p className="text-xs sm:text-sm tracking-wider text-secondary-text/80">{t('nav_social_media')}</p>
             <div className="flex flex-col flex-wrap md:flex-row gap-x-2">
               {socials.map((social, index) => (
                 <a

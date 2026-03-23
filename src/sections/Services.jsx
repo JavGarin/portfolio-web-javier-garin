@@ -51,7 +51,7 @@ const Services = () => {
         subTitle={t('services_subtitle')}
         title={t('services_title')}
         text={t('services_text')}
-        textColor={"text-white"}
+        textColor={"text-primary-text"}
         withScrollTrigger={true}
       />
       {servicesData.map((service, index) => (
